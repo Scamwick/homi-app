@@ -199,17 +199,8 @@ export default function LandingPage() {
               <button className="px-6 py-3 bg-gradient-to-r from-[#22d3ee] to-[#34d399] text-gray-900 rounded-full font-bold text-sm hover:shadow-lg transition-all">
                 🏡 Home Buying
               </button>
-              <button className="px-6 py-3 bg-[#1e293b]/60 border border-[#22d3ee]/30 text-gray-400 rounded-full font-bold text-sm cursor-not-allowed" disabled>
-                🚗 Cars
-              </button>
-              <button className="px-6 py-3 bg-[#1e293b]/60 border border-[#22d3ee]/30 text-gray-400 rounded-full font-bold text-sm cursor-not-allowed" disabled>
-                💼 Investments
-              </button>
-              <button className="px-6 py-3 bg-[#1e293b]/60 border border-[#22d3ee]/30 text-gray-400 rounded-full font-bold text-sm cursor-not-allowed" disabled>
-                🎯 Career Change
-              </button>
             </div>
-            <p className="text-sm text-gray-500 italic">Stay tuned. More to come.</p>
+            <p className="text-sm text-gray-500 italic">More decisions coming soon. Stay tuned.</p>
           </div>
         </div>
 
