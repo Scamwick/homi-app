@@ -100,9 +100,9 @@ export default function LandingPage() {
           </h1>
 
           <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-            HōMI is your AI companion for major life decisions. We analyze your readiness across
-            financial, emotional, and timing dimensions to tell you: YES, NO, or NOT YET.
-            Starting with home buying. Expanding to cars, investments, and career changes.
+            You know something's off, but can't tell if it's cold feet or real warning signs.
+            HōMI cuts through the noise: we analyze your readiness and tell you
+            if now is the time, or if you need to wait.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
