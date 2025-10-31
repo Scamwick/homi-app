@@ -18,10 +18,10 @@ export default function LandingPage() {
 
   // Get status based on score
   const getStatus = (score: number) => {
-    if (score >= 80) return { text: '✓ Threshold Crossed — Key Appears', color: '#facc15', bg: 'rgba(250, 204, 21, 0.15)' };
-    if (score >= 70) return { text: '↗ Approaching Threshold', color: '#34d399', bg: 'rgba(52, 211, 153, 0.1)' };
-    if (score >= 40) return { text: '→ Building Alignment', color: '#22d3ee', bg: 'rgba(34, 211, 238, 0.1)' };
-    return { text: '○ Early Journey', color: '#22d3ee', bg: 'rgba(34, 211, 238, 0.05)' };
+    if (score >= 80) return { text: '✓ Ready to Buy — Start House Hunting', color: '#facc15', bg: 'rgba(250, 204, 21, 0.15)' };
+    if (score >= 70) return { text: '↗ Almost There — A Few Improvements Needed', color: '#34d399', bg: 'rgba(52, 211, 153, 0.1)' };
+    if (score >= 50) return { text: '→ Not Quite Ready — Focus on Building Readiness', color: '#22d3ee', bg: 'rgba(34, 211, 238, 0.1)' };
+    return { text: '○ Hold Off For Now — Build Your Foundation First', color: '#22d3ee', bg: 'rgba(34, 211, 238, 0.05)' };
   };
 
   const status = getStatus(totalScore);
@@ -95,14 +95,14 @@ export default function LandingPage() {
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
-            Life's biggest decisions<br />
-            deserve <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">more than a coin flip</span>
+            Buying a home<br />
+            deserves <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">more than a coin flip</span>
           </h1>
 
           <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-            HōMI helps you see clearly when everything feels uncertain.
-            Your AI companion for navigating career changes, relationships, relocations,
-            and every threshold moment that shapes your life.
+            HōMI analyzes your finances, emotional readiness, and market timing to give you
+            a clear answer: are you ready to buy, or should you wait?
+            No sales pitch. No pressure. Just truth.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -110,13 +110,13 @@ export default function LandingPage() {
               href="#score"
               className="bg-gradient-to-r from-[#22d3ee] to-[#34d399] text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-[#22d3ee]/40 transition-all hover:scale-105 text-center"
             >
-              Get Your HōMI Score →
+              Check My Readiness →
             </Link>
             <Link
               href="/assessment"
               className="border-2 border-[#22d3ee] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#22d3ee]/10 transition-all hover:scale-105 text-center"
             >
-              Take Full Assessment
+              Full Home Buying Assessment
             </Link>
           </div>
         </div>
@@ -186,12 +186,12 @@ export default function LandingPage() {
       <section id="score" className="px-6 py-24 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Discover Your <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Decision Readiness</span>
+            Are You <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Ready to Buy?</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            The HōMI Score analyzes three dimensions of any major decision:
-            Financial capability, Emotional clarity, and Timing pressure.
-            <strong className="text-white"> Watch the compass transform into a key when you're ready.</strong>
+            The HōMI Score analyzes three critical dimensions of home buying readiness:
+            Financial strength (50%), Emotional clarity (30%), and Market timing (20%).
+            <strong className="text-white"> Watch the compass transform into a key when you cross the threshold.</strong>
           </p>
         </div>
 
@@ -202,8 +202,8 @@ export default function LandingPage() {
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="flex items-center gap-3 text-lg font-bold">
-                    <span className="text-2xl">💎</span>
-                    <span>Financial Capability</span>
+                    <span className="text-2xl">💰</span>
+                    <span>Financial Strength</span>
                   </span>
                   <span className="text-2xl font-extrabold px-3 py-1 rounded-lg bg-[#22d3ee]/10 text-[#22d3ee]">
                     {financial}%
@@ -220,14 +220,14 @@ export default function LandingPage() {
                     background: `linear-gradient(to right, #22d3ee 0%, #22d3ee ${financial}%, #1e293b ${financial}%, #1e293b 100%)`
                   }}
                 />
-                <p className="text-sm text-gray-500 mt-2">Can you afford this decision right now?</p>
+                <p className="text-sm text-gray-500 mt-2">Income, savings, debt, and credit score</p>
               </div>
 
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="flex items-center gap-3 text-lg font-bold">
-                    <span className="text-2xl">🌊</span>
-                    <span>Emotional Clarity</span>
+                    <span className="text-2xl">🎯</span>
+                    <span>Emotional Readiness</span>
                   </span>
                   <span className="text-2xl font-extrabold px-3 py-1 rounded-lg bg-[#34d399]/10 text-[#34d399]">
                     {emotional}%
@@ -244,14 +244,14 @@ export default function LandingPage() {
                     background: `linear-gradient(to right, #34d399 0%, #34d399 ${emotional}%, #1e293b ${emotional}%, #1e293b 100%)`
                   }}
                 />
-                <p className="text-sm text-gray-500 mt-2">How clear and confident do you feel?</p>
+                <p className="text-sm text-gray-500 mt-2">Confidence, job stability, and life stability</p>
               </div>
 
               <div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="flex items-center gap-3 text-lg font-bold">
-                    <span className="text-2xl">⚡</span>
-                    <span>Timing Pressure</span>
+                    <span className="text-2xl">📈</span>
+                    <span>Market Timing</span>
                   </span>
                   <span className="text-2xl font-extrabold px-3 py-1 rounded-lg bg-[#facc15]/10 text-[#facc15]">
                     {timing}%
@@ -268,7 +268,7 @@ export default function LandingPage() {
                     background: `linear-gradient(to right, #facc15 0%, #facc15 ${timing}%, #1e293b ${timing}%, #1e293b 100%)`
                   }}
                 />
-                <p className="text-sm text-gray-500 mt-2">Is now the right moment?</p>
+                <p className="text-sm text-gray-500 mt-2">Market conditions and your timeline to buy</p>
               </div>
             </div>
 
@@ -398,52 +398,52 @@ export default function LandingPage() {
       <section id="companions" className="px-6 py-24 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Meet Your <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Decision Companion</span>
+            Choose Your <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Home Buying Guide</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Every major decision needs the right voice. Choose a companion that matches how you think and what you need right now.
+            Your AI companion adapts to how you think and what you need. Pick the voice that resonates with you.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Pragmatist */}
           <div className="bg-gradient-to-br from-[#1e293b]/60 to-[#0f172a]/60 backdrop-blur-lg rounded-2xl p-8 border border-[#34d399]/20 hover:border-[#34d399] hover:shadow-2xl hover:shadow-[#34d399]/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-            <div className="text-6xl mb-6">🎯</div>
-            <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Pragmatist</h3>
+            <div className="text-6xl mb-6">💼</div>
+            <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Analyst</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Data-driven clarity without the noise. For those who trust numbers and facts.
+              Pure numbers. Hard data. No fluff. Shows you mortgage scenarios, affordability ranges, and market trends.
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Analytical</span>
+              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Data-driven</span>
               <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Direct</span>
-              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Risk-aware</span>
+              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Risk-focused</span>
             </div>
           </div>
 
           {/* Optimist */}
           <div className="bg-gradient-to-br from-[#1e293b]/60 to-[#0f172a]/60 backdrop-blur-lg rounded-2xl p-8 border border-[#34d399]/20 hover:border-[#34d399] hover:shadow-2xl hover:shadow-[#34d399]/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-            <div className="text-6xl mb-6">✨</div>
-            <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Optimist</h3>
+            <div className="text-6xl mb-6">🏡</div>
+            <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Dreamer</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Possibility-focused, confidence-building. For those ready to leap.
+              Helps you visualize your future. Builds confidence. Focuses on possibilities and creative financing solutions.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Encouraging</span>
               <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Creative</span>
-              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Growth-minded</span>
+              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Solution-oriented</span>
             </div>
           </div>
 
           {/* Navigator */}
           <div className="bg-gradient-to-br from-[#1e293b]/60 to-[#0f172a]/60 backdrop-blur-lg rounded-2xl p-8 border border-[#34d399]/20 hover:border-[#34d399] hover:shadow-2xl hover:shadow-[#34d399]/30 transition-all duration-300 hover:-translate-y-2 cursor-pointer">
-            <div className="text-6xl mb-6">🧭</div>
-            <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Navigator</h3>
+            <div className="text-6xl mb-6">🗺️</div>
+            <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Planner</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Balanced perspective, step-by-step guidance. For those who need structure.
+              Step-by-step roadmap. Creates timelines. Breaks down the home buying process into manageable milestones.
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Thoughtful</span>
-              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Structured</span>
+              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Methodical</span>
+              <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Organized</span>
               <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Patient</span>
             </div>
           </div>
@@ -454,10 +454,10 @@ export default function LandingPage() {
       <section id="waitlist" className="px-6 py-24 max-w-4xl mx-auto">
         <div className="bg-gradient-to-br from-[#1e293b]/60 to-[#0f172a]/60 backdrop-blur-xl rounded-3xl p-12 border border-[#22d3ee]/30 shadow-2xl text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Join the <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">First 1,000</span>
+            Join the <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">First 1,000 Buyers</span>
           </h2>
           <p className="text-xl text-gray-400 mb-10">
-            HōMI is launching soon. Get early access and help shape the future of decision intelligence. No fluff. No sales pitch. Just truth.
+            HōMI launches in 2025. Get early access to the smartest home buying assistant ever built. No realtor pressure. No lender bias. Just honest answers.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
@@ -475,12 +475,12 @@ export default function LandingPage() {
             </div>
 
             <div className="text-left">
-              <label htmlFor="decision" className="block font-bold text-[#22d3ee] mb-2">What decision are you facing? (Optional)</label>
+              <label htmlFor="decision" className="block font-bold text-[#22d3ee] mb-2">Where are you in your home buying journey? (Optional)</label>
               <textarea
                 id="decision"
                 value={decision}
                 onChange={(e) => setDecision(e.target.value)}
-                placeholder="Career change, relocation, relationship, investment..."
+                placeholder="Just starting research, actively house hunting, offer accepted, trying to decide if I'm ready..."
                 rows={4}
                 className="w-full px-6 py-4 rounded-2xl border-2 border-[#22d3ee]/20 bg-[#0f172a]/50 text-white focus:outline-none focus:border-[#22d3ee] focus:bg-[#0f172a]/80 transition-all resize-none"
               />
@@ -505,9 +505,9 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="text-center px-6 py-12 border-t border-[#22d3ee]/10 text-gray-500">
-        <p className="mb-2"><strong>© 2025 HōMI.</strong> Building AI companions for life's biggest decisions.</p>
+        <p className="mb-2"><strong>© 2025 HōMI Technologies LLC.</strong> Your AI companion for home buying decisions.</p>
         <p className="text-sm text-gray-600">
-          Not therapy. Not productivity. A friend for your threshold moments.
+          Not a realtor. Not a lender. Your honest guide to homeownership.
         </p>
       </footer>
     </div>
