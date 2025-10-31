@@ -472,7 +472,7 @@ export default function LandingPage() {
             Join the <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">First 1,000</span>
           </h2>
           <p className="text-xl text-gray-400 mb-10">
-            HōMI launches in 2025. Get early access to AI-powered decision intelligence. Starting with home buying, expanding to cars, investments, and career changes. No sales pitch. Just truth.
+            HōMI launches in 2025. Get early access to AI-powered decision intelligence for home buying. More decisions coming soon. No sales pitch. Just truth.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
