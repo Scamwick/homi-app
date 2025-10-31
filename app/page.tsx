@@ -121,7 +121,7 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Animated Compass */}
+        {/* Animated Compass - Classic Rotating Rings */}
         <div className="relative z-10 flex items-center justify-center opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           <svg className="w-full max-w-md" viewBox="0 0 200 200">
             <defs>
@@ -129,21 +129,49 @@ export default function LandingPage() {
                 <stop offset="0%" stopColor="#facc15" stopOpacity={showKey ? "0.8" : "0"} />
                 <stop offset="100%" stopColor="#facc15" stopOpacity="0" />
               </radialGradient>
-              <linearGradient id="outerRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#22d3ee" />
-                <stop offset="100%" stopColor="#34d399" />
-              </linearGradient>
+
+              <filter id="ringGlow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
 
-            <circle className="compass-outer-ring" cx="100" cy="100" r="80" fill="none" stroke="url(#outerRing)" strokeWidth="2" opacity="0.6" />
-            <circle className="compass-middle-ring" cx="100" cy="100" r="60" fill="none" stroke="#34d399" strokeWidth="3" opacity="0.7" />
-            <circle className="compass-inner-ring" cx="100" cy="100" r="40" fill="none" stroke="#34d399" strokeWidth="4" opacity="0.8" />
+            {/* Outer Ring (Cyan - Financial) - Rotates Clockwise 20s */}
+            <g className="compass-outer-ring">
+              <circle cx="100" cy="100" r="85" fill="none" stroke="#22d3ee" strokeWidth="2" opacity="0.6" filter="url(#ringGlow)" />
+              <circle cx="100" cy="15" r="3" fill="#22d3ee" />
+              <circle cx="185" cy="100" r="3" fill="#22d3ee" />
+              <circle cx="100" cy="185" r="3" fill="#22d3ee" />
+              <circle cx="15" cy="100" r="3" fill="#22d3ee" />
+            </g>
 
-            <circle cx="100" cy="100" r="50" fill="url(#centerGlow)" style={{ transition: 'all 0.5s ease' }} />
+            {/* Middle Ring (Emerald - Emotional) - Rotates Counter-Clockwise 15s */}
+            <g className="compass-middle-ring">
+              <circle cx="100" cy="100" r="60" fill="none" stroke="#34d399" strokeWidth="2.5" opacity="0.7" filter="url(#ringGlow)" />
+              <circle cx="100" cy="40" r="2.5" fill="#34d399" />
+              <circle cx="160" cy="100" r="2.5" fill="#34d399" />
+              <circle cx="100" cy="160" r="2.5" fill="#34d399" />
+              <circle cx="40" cy="100" r="2.5" fill="#34d399" />
+            </g>
 
-            <circle cx="100" cy="92" r="12" fill="none" stroke={showKey ? "#facc15" : "#34d399"} strokeWidth="3" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
-            <rect x="95" y="100" width="10" height="15" fill="none" stroke={showKey ? "#facc15" : "#34d399"} strokeWidth="3" rx="2" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
+            {/* Inner Ring (Yellow - Timing/Readiness) - Rotates Clockwise 10s */}
+            <g className="compass-inner-ring">
+              <circle cx="100" cy="100" r="35" fill="none" stroke="#facc15" strokeWidth="3" opacity="0.8" filter="url(#ringGlow)" />
+            </g>
 
+            {/* Center Glow */}
+            <circle cx="100" cy="100" r="50" fill="url(#centerGlow)" opacity="0.3" style={{ transition: 'all 0.5s ease' }} />
+
+            {/* Keyhole (Pulsing) */}
+            <g className="compass-keyhole">
+              <circle cx="100" cy="92" r="12" fill="none" stroke={showKey ? "#facc15" : "#34d399"} strokeWidth="3" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
+              <rect x="95" y="100" width="10" height="15" fill="none" stroke={showKey ? "#facc15" : "#34d399"} strokeWidth="3" rx="2" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
+            </g>
+
+            {/* Key Appears at 80% */}
             {showKey && (
               <g style={{ transition: 'opacity 0.5s ease' }}>
                 <circle cx="100" cy="92" r="4" fill="#facc15" />
@@ -244,7 +272,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Score Display */}
+            {/* Score Display - Classic Rotating Rings */}
             <div className="flex flex-col items-center">
               <div className="relative w-80 h-80">
                 <svg width="100%" height="100%" viewBox="0 0 200 200">
@@ -253,17 +281,49 @@ export default function LandingPage() {
                       <stop offset="0%" stopColor="#facc15" stopOpacity={showKey ? "0.8" : "0"} />
                       <stop offset="100%" stopColor="#facc15" stopOpacity="0" />
                     </radialGradient>
+
+                    <filter id="scoreRingGlow">
+                      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
                   </defs>
 
-                  <circle cx="100" cy="100" r="80" fill="none" stroke="#22d3ee" strokeWidth="2" opacity="0.6" />
-                  <circle cx="100" cy="100" r="60" fill="none" stroke="#34d399" strokeWidth="3" opacity="0.7" />
-                  <circle cx="100" cy="100" r="40" fill="none" stroke="#34d399" strokeWidth="4" opacity="0.8" />
+                  {/* Outer Ring (Cyan - Financial) - Rotates Clockwise 20s */}
+                  <g className="compass-outer-ring">
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="#22d3ee" strokeWidth="2" opacity="0.6" filter="url(#scoreRingGlow)" />
+                    <circle cx="100" cy="15" r="3" fill="#22d3ee" />
+                    <circle cx="185" cy="100" r="3" fill="#22d3ee" />
+                    <circle cx="100" cy="185" r="3" fill="#22d3ee" />
+                    <circle cx="15" cy="100" r="3" fill="#22d3ee" />
+                  </g>
 
-                  <circle cx="100" cy="100" r="50" fill="url(#scoreGlow)" style={{ transition: 'all 0.5s ease' }} />
+                  {/* Middle Ring (Emerald - Emotional) - Rotates Counter-Clockwise 15s */}
+                  <g className="compass-middle-ring">
+                    <circle cx="100" cy="100" r="60" fill="none" stroke="#34d399" strokeWidth="2.5" opacity="0.7" filter="url(#scoreRingGlow)" />
+                    <circle cx="100" cy="40" r="2.5" fill="#34d399" />
+                    <circle cx="160" cy="100" r="2.5" fill="#34d399" />
+                    <circle cx="100" cy="160" r="2.5" fill="#34d399" />
+                    <circle cx="40" cy="100" r="2.5" fill="#34d399" />
+                  </g>
 
-                  <circle cx="100" cy="92" r="12" fill="none" stroke={showKey ? "#facc15" : status.color} strokeWidth="3" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
-                  <rect x="95" y="100" width="10" height="15" fill="none" stroke={showKey ? "#facc15" : status.color} strokeWidth="3" rx="2" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
+                  {/* Inner Ring (Yellow - Timing/Readiness) - Rotates Clockwise 10s */}
+                  <g className="compass-inner-ring">
+                    <circle cx="100" cy="100" r="35" fill="none" stroke="#facc15" strokeWidth="3" opacity="0.8" filter="url(#scoreRingGlow)" />
+                  </g>
 
+                  {/* Center Glow */}
+                  <circle cx="100" cy="100" r="50" fill="url(#scoreGlow)" opacity="0.3" style={{ transition: 'all 0.5s ease' }} />
+
+                  {/* Keyhole (Pulsing) */}
+                  <g className="compass-keyhole">
+                    <circle cx="100" cy="92" r="12" fill="none" stroke={showKey ? "#facc15" : status.color} strokeWidth="3" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
+                    <rect x="95" y="100" width="10" height="15" fill="none" stroke={showKey ? "#facc15" : status.color} strokeWidth="3" rx="2" opacity={showKey ? "1" : "0.6"} style={{ transition: 'all 0.5s ease' }} />
+                  </g>
+
+                  {/* Key Appears at 80% */}
                   {showKey && (
                     <g style={{ transition: 'opacity 0.5s ease' }}>
                       <circle cx="100" cy="92" r="4" fill="#facc15" />

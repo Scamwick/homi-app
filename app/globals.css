@@ -58,12 +58,21 @@ body {
   }
 }
 
-@keyframes rotateRing {
+@keyframes rotateClockwise {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }
 
@@ -78,6 +87,15 @@ body {
   }
 }
 
+@keyframes keyholePulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 1s ease forwards;
 }
@@ -86,19 +104,24 @@ body {
   animation: pulse 8s ease-in-out infinite;
 }
 
+/* Classic Rotating Rings - Option 1 */
 .compass-outer-ring {
-  animation: rotateRing 40s linear infinite;
+  animation: rotateClockwise 20s linear infinite;
   transform-origin: center;
 }
 
 .compass-middle-ring {
-  animation: rotateRing 30s linear infinite reverse;
+  animation: rotateCounterClockwise 15s linear infinite;
   transform-origin: center;
 }
 
 .compass-inner-ring {
-  animation: rotateRing 20s linear infinite;
+  animation: rotateClockwise 10s linear infinite;
   transform-origin: center;
+}
+
+.compass-keyhole {
+  animation: keyholePulse 2s ease-in-out infinite;
 }
 
 /* Smooth Scroll */
