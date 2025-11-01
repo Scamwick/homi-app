@@ -234,9 +234,9 @@ export default function LandingPage() {
         </div>
 
         <div className="max-w-2xl mx-auto bg-gradient-to-br from-[#22d3ee]/10 to-[#34d399]/10 border border-[#22d3ee]/30 rounded-2xl p-8 text-center">
-          <p className="text-2xl font-bold text-white mb-2">Your HōMI</p>
-          <p className="text-[#34d399] text-xl mb-3">Wants what's actually best for you</p>
-          <p className="text-lg text-gray-300 mb-4">Makes $0 whether you buy or wait</p>
+          <p className="text-2xl font-bold text-white mb-3">Your HōMI</p>
+          <p className="text-[#34d399] text-lg mb-2">Wants what's actually best for you</p>
+          <p className="text-gray-300 mb-4">No commissions. No referral fees. No incentive to push you either way.</p>
           <p className="text-xl font-bold text-white">Finally—someone on your side of the table.</p>
         </div>
       </section>
@@ -272,12 +272,12 @@ export default function LandingPage() {
             </div>
 
             <div className="border-l-4 border-[#34d399] pl-6">
-              <h3 className="text-2xl font-bold text-white mb-3">A real friend has ZERO agenda</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">A real friend has no conflict of interest</h3>
               <p className="text-lg text-gray-300 mb-3 leading-relaxed">
-                They're not trying to sell you. They're not getting a kickback. They don't benefit when you make a move—they only care about whether it's the RIGHT move.
+                They don't get paid more when you say yes. They don't profit when you buy. They have zero financial incentive to push you in any direction—they only care about whether it's the RIGHT move.
               </p>
               <p className="text-[#34d399] font-semibold">
-                HōMI makes $0 from referrals, commissions, or affiliate fees. Ever.
+                HōMI makes $0 from referrals, commissions, or affiliate fees. Your decision doesn't change what we earn.
               </p>
             </div>
 
@@ -630,7 +630,7 @@ export default function LandingPage() {
             You're not signing up for software.
           </p>
           <p className="text-2xl font-bold text-white mb-6 max-w-2xl mx-auto">
-            You're meeting your new decision-making homie.
+            You're meeting your new decision-making HōMI.
           </p>
           <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
             Decision Readiness Intelligence launches 2025. The first 1,000 users get founder access—meaning you shape how this category evolves and how this friendship works. Starting with home buying, expanding to career moves, investments, relocations, and every decision that matters. <strong className="text-white">No sales pitch. No upsell. Zero conflicts of interest.</strong> Just the truth no one else will give you.
@@ -688,7 +688,7 @@ export default function LandingPage() {
       <footer className="text-center px-6 py-12 border-t border-[#22d3ee]/10 text-gray-500">
         <p className="mb-2"><strong>© 2025 HōMI Technologies LLC.</strong> Pioneering Decision Readiness Intelligence.</p>
         <p className="text-sm text-gray-600">
-          Not a calculator. Not a coach. Not a sales pitch. Your homie who tells you the truth when everything's on the line.
+          Not a calculator. Not a coach. Not a sales pitch. Your HōMI who tells you the truth when everything's on the line.
         </p>
       </footer>
     </div>
