@@ -209,9 +209,9 @@ export default function HomiCoachBrandAligned() {
         ...userData,
         plaidConnected: true,
         realTimeData: mockAccountData,
-        income: mockAccountData.monthlyIncome * 12,
-        savings: mockAccountData.checking.balance + mockAccountData.savings.balance,
-        debt: mockAccountData.debtPayments
+        income: (mockAccountData.monthlyIncome * 12).toString(),
+        savings: (mockAccountData.checking.balance + mockAccountData.savings.balance).toString(),
+        debt: mockAccountData.debtPayments.toString()
       });
 
       setConversation([
