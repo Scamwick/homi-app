@@ -50,6 +50,7 @@ export default function AssessmentPage() {
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCompanion, setSelectedCompanion] = useState<string | null>(null);
 
   const q = questions[step];
   const IconComponent = q.icon;
@@ -175,9 +176,101 @@ export default function AssessmentPage() {
             ))}
           </div>
 
+          {/* Companion Selection */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold text-white mb-3 text-center">
+              Choose Your <span className="text-homi-cyan">Decision Coach</span>
+            </h3>
+            <p className="text-gray-400 mb-6 text-center">
+              Work with an AI companion to help you reach your home buying goals
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {/* The Analyst */}
+              <button
+                onClick={() => setSelectedCompanion('analyst')}
+                className={`bg-slate-800/60 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1 text-left ${
+                  selectedCompanion === 'analyst'
+                    ? 'border-homi-emerald shadow-lg shadow-homi-emerald/30'
+                    : 'border-slate-700 hover:border-homi-emerald/50'
+                }`}
+              >
+                <div className="text-4xl mb-3">📊</div>
+                <h4 className="text-lg font-bold text-homi-emerald mb-2">The Analyst</h4>
+                <p className="text-sm text-gray-400 mb-3">
+                  Data-driven guidance. Shows you the numbers and what you need to improve.
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Numbers-focused</span>
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Direct</span>
+                </div>
+              </button>
+
+              {/* The Optimist */}
+              <button
+                onClick={() => setSelectedCompanion('optimist')}
+                className={`bg-slate-800/60 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1 text-left ${
+                  selectedCompanion === 'optimist'
+                    ? 'border-homi-emerald shadow-lg shadow-homi-emerald/30'
+                    : 'border-slate-700 hover:border-homi-emerald/50'
+                }`}
+              >
+                <div className="text-4xl mb-3">✨</div>
+                <h4 className="text-lg font-bold text-homi-emerald mb-2">The Optimist</h4>
+                <p className="text-sm text-gray-400 mb-3">
+                  Encouraging support. Builds confidence and helps you see possibilities.
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Motivating</span>
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Creative</span>
+                </div>
+              </button>
+
+              {/* The Navigator */}
+              <button
+                onClick={() => setSelectedCompanion('navigator')}
+                className={`bg-slate-800/60 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1 text-left ${
+                  selectedCompanion === 'navigator'
+                    ? 'border-homi-emerald shadow-lg shadow-homi-emerald/30'
+                    : 'border-slate-700 hover:border-homi-emerald/50'
+                }`}
+              >
+                <div className="text-4xl mb-3">🧭</div>
+                <h4 className="text-lg font-bold text-homi-emerald mb-2">The Navigator</h4>
+                <p className="text-sm text-gray-400 mb-3">
+                  Step-by-step roadmap. Creates actionable plans with milestones.
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Structured</span>
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Patient</span>
+                </div>
+              </button>
+            </div>
+
+            {selectedCompanion && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 p-6 bg-homi-emerald/10 border border-homi-emerald/30 rounded-xl"
+              >
+                <p className="text-white mb-4">
+                  <strong>Great choice!</strong> Your {selectedCompanion === 'analyst' ? 'Analyst' : selectedCompanion === 'optimist' ? 'Optimist' : 'Navigator'} is ready to help you improve your HōMI Score.
+                </p>
+                <button
+                  className="w-full bg-gradient-to-r from-homi-cyan to-homi-emerald text-gray-900 px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all transform hover:scale-105"
+                  onClick={() => {
+                    alert('Coach feature coming soon! We\'ll connect you with your ' + selectedCompanion + ' to work on your recommendations.');
+                  }}
+                >
+                  Start Working with Your Coach →
+                </button>
+              </motion.div>
+            )}
+          </div>
+
           <button
-            onClick={() => { setResult(null); setStep(0); setForm({}); }}
-            className="mt-10 bg-homi-cyan text-homi-graphite font-bold px-8 py-3 rounded-xl hover:bg-homi-emerald transition-all transform hover:scale-105"
+            onClick={() => { setResult(null); setStep(0); setForm({}); setSelectedCompanion(null); }}
+            className="mt-10 bg-slate-800 text-white font-bold px-8 py-3 rounded-xl hover:bg-slate-700 transition-all border border-slate-700"
           >
             Retake Assessment
           </button>
