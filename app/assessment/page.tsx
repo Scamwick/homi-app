@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowLeft, ArrowRight, TrendingUp, Target, Heart, Clock, Check,
 } from "lucide-react";
@@ -44,10 +46,13 @@ const questions: Question[] = [
 ];
 
 export default function AssessmentPage() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<Partial<AssessmentData>>({});
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedCompanion, setSelectedCompanion] = useState<string | null>(null);
 
   const q = questions[step];
   const IconComponent = q.icon;
@@ -57,18 +62,45 @@ export default function AssessmentPage() {
   const next = () => step < questions.length - 1 && setStep(step + 1);
   const back = () => step > 0 && setStep(step - 1);
 
+  // Check if current question is answered
+  const isCurrentQuestionAnswered = () => {
+    const value = form[q.id];
+    if (q.type === 'number') {
+      return value !== undefined && value !== null && typeof value === 'number' && value > 0;
+    }
+    return value !== undefined && value !== null && value !== '';
+  };
+
   const submit = async () => {
     setLoading(true);
+    setError(null);
+
+    console.log('Submitting form data:', form);
+
     try {
       const res = await fetch("/api/score", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ responses: form }),
       });
+
+      console.log('Response status:', res.status);
+
       const data = await res.json();
-      setResult(data.score);
+      console.log('Response data:', data);
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to calculate score');
+      }
+
+      if (data.score) {
+        setResult(data.score);
+      } else {
+        throw new Error('Invalid response from server');
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Submit error:', err);
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -77,6 +109,25 @@ export default function AssessmentPage() {
   if (result) {
     return (
       <main className="min-h-screen bg-homi-graphite flex flex-col items-center justify-center p-8 text-center">
+        {/* Header */}
+        <header className="fixed top-0 w-full z-50 bg-[#0A1128]/95 backdrop-blur-lg py-4 border-b border-[#22d3ee]/10">
+          <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <Link href="/" className="text-2xl font-extrabold tracking-wider hover:opacity-80 transition-opacity">
+              <span className="text-[#22d3ee]">H</span>
+              <span className="text-[#34d399]">ō</span>
+              <span className="text-[#facc15]">M</span>
+              <span className="text-[#22d3ee]">I</span>
+            </Link>
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-[#22d3ee] hover:text-[#34d399] transition-colors font-semibold"
+            >
+              <ArrowLeft size={18} />
+              Back to Home
+            </Link>
+          </div>
+        </header>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -127,9 +178,104 @@ export default function AssessmentPage() {
             ))}
           </div>
 
+          {/* Companion Selection */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold text-white mb-3 text-center">
+              Choose Your <span className="text-homi-cyan">Decision Coach</span>
+            </h3>
+            <p className="text-gray-400 mb-6 text-center">
+              Work with an AI companion to help you reach your home buying goals
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              {/* The Analyst */}
+              <button
+                onClick={() => setSelectedCompanion('analyst')}
+                className={`bg-slate-800/60 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1 text-left ${
+                  selectedCompanion === 'analyst'
+                    ? 'border-homi-emerald shadow-lg shadow-homi-emerald/30'
+                    : 'border-slate-700 hover:border-homi-emerald/50'
+                }`}
+              >
+                <div className="text-4xl mb-3">📊</div>
+                <h4 className="text-lg font-bold text-homi-emerald mb-2">The Analyst</h4>
+                <p className="text-sm text-gray-400 mb-3">
+                  Data-driven guidance. Shows you the numbers and what you need to improve.
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Numbers-focused</span>
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Direct</span>
+                </div>
+              </button>
+
+              {/* The Optimist */}
+              <button
+                onClick={() => setSelectedCompanion('optimist')}
+                className={`bg-slate-800/60 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1 text-left ${
+                  selectedCompanion === 'optimist'
+                    ? 'border-homi-emerald shadow-lg shadow-homi-emerald/30'
+                    : 'border-slate-700 hover:border-homi-emerald/50'
+                }`}
+              >
+                <div className="text-4xl mb-3">✨</div>
+                <h4 className="text-lg font-bold text-homi-emerald mb-2">The Optimist</h4>
+                <p className="text-sm text-gray-400 mb-3">
+                  Encouraging support. Builds confidence and helps you see possibilities.
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Motivating</span>
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Creative</span>
+                </div>
+              </button>
+
+              {/* The Navigator */}
+              <button
+                onClick={() => setSelectedCompanion('navigator')}
+                className={`bg-slate-800/60 backdrop-blur-lg rounded-xl p-6 border transition-all duration-300 hover:-translate-y-1 text-left ${
+                  selectedCompanion === 'navigator'
+                    ? 'border-homi-emerald shadow-lg shadow-homi-emerald/30'
+                    : 'border-slate-700 hover:border-homi-emerald/50'
+                }`}
+              >
+                <div className="text-4xl mb-3">🧭</div>
+                <h4 className="text-lg font-bold text-homi-emerald mb-2">The Navigator</h4>
+                <p className="text-sm text-gray-400 mb-3">
+                  Step-by-step roadmap. Creates actionable plans with milestones.
+                </p>
+                <div className="flex flex-wrap gap-1">
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Structured</span>
+                  <span className="px-2 py-1 bg-homi-cyan/10 text-homi-cyan rounded-full text-xs">Patient</span>
+                </div>
+              </button>
+            </div>
+
+            {selectedCompanion && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 p-6 bg-homi-emerald/10 border border-homi-emerald/30 rounded-xl"
+              >
+                <p className="text-white mb-4">
+                  <strong>Great choice!</strong> Your {selectedCompanion === 'analyst' ? 'Analyst' : selectedCompanion === 'optimist' ? 'Optimist' : 'Navigator'} is ready to help you improve your HōMI Score.
+                </p>
+                <button
+                  className="w-full bg-gradient-to-r from-homi-cyan to-homi-emerald text-gray-900 px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all transform hover:scale-105"
+                  onClick={() => {
+                    // Store assessment data in sessionStorage for coach page
+                    sessionStorage.setItem('assessmentResult', JSON.stringify(result));
+                    // Navigate to coach page with companion type
+                    router.push(`/coach?companion=${selectedCompanion}&score=${result.total}`);
+                  }}
+                >
+                  Start Working with Your Coach →
+                </button>
+              </motion.div>
+            )}
+          </div>
+
           <button
-            onClick={() => { setResult(null); setStep(0); setForm({}); }}
-            className="mt-10 bg-homi-cyan text-homi-graphite font-bold px-8 py-3 rounded-xl hover:bg-homi-emerald transition-all transform hover:scale-105"
+            onClick={() => { setResult(null); setStep(0); setForm({}); setSelectedCompanion(null); }}
+            className="mt-10 bg-slate-800 text-white font-bold px-8 py-3 rounded-xl hover:bg-slate-700 transition-all border border-slate-700"
           >
             Retake Assessment
           </button>
@@ -140,6 +286,25 @@ export default function AssessmentPage() {
 
   return (
     <main className="min-h-screen bg-homi-graphite flex flex-col items-center justify-center p-6">
+      {/* Header */}
+      <header className="fixed top-0 w-full z-50 bg-[#0A1128]/95 backdrop-blur-lg py-4 border-b border-[#22d3ee]/10">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <Link href="/" className="text-2xl font-extrabold tracking-wider hover:opacity-80 transition-opacity">
+            <span className="text-[#22d3ee]">H</span>
+            <span className="text-[#34d399]">ō</span>
+            <span className="text-[#facc15]">M</span>
+            <span className="text-[#22d3ee]">I</span>
+          </Link>
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-[#22d3ee] hover:text-[#34d399] transition-colors font-semibold"
+          >
+            <ArrowLeft size={18} />
+            Back to Home
+          </Link>
+        </div>
+      </header>
+
       <div className="max-w-xl w-full bg-slate-900/60 border border-slate-700 rounded-2xl p-8 shadow-xl">
         <div className="flex justify-between mb-6 text-slate-400">
           <span>Question {step + 1} / {questions.length}</span>
@@ -214,6 +379,18 @@ export default function AssessmentPage() {
           </motion.div>
         </AnimatePresence>
 
+        {error && (
+          <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+
+        {!isCurrentQuestionAnswered() && (
+          <div className="mt-6 p-3 bg-slate-800/60 border border-slate-700 rounded-lg text-slate-400 text-sm text-center">
+            Please answer this question to continue
+          </div>
+        )}
+
         <div className="flex justify-between mt-8">
           <button
             onClick={back}
@@ -226,15 +403,16 @@ export default function AssessmentPage() {
           {step < questions.length - 1 ? (
             <button
               onClick={next}
-              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-emerald text-homi-graphite font-semibold hover:bg-homi-cyan transition-all transform hover:scale-105"
+              disabled={!isCurrentQuestionAnswered()}
+              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-emerald text-homi-graphite font-semibold hover:bg-homi-cyan transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next<ArrowRight size={18} />
             </button>
           ) : (
             <button
               onClick={submit}
-              disabled={loading}
-              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-cyan text-homi-graphite font-semibold hover:bg-homi-emerald transition-all transform hover:scale-105 disabled:opacity-50"
+              disabled={loading || !isCurrentQuestionAnswered()}
+              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-cyan text-homi-graphite font-semibold hover:bg-homi-emerald transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Calculating…" : "Get My Score"}
               <Check size={18} />
