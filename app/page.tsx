@@ -91,19 +91,19 @@ export default function LandingPage() {
 
         <div className="relative z-10 opacity-0 animate-fade-in-up">
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-[#22d3ee]/20 to-[#34d399]/20 border border-[#22d3ee]/30 rounded-full mb-8 text-[#22d3ee] font-bold text-sm tracking-widest">
-            ✦ MEET YOUR HōMI
+            ✦ INTRODUCING: DECISION READINESS INTELLIGENCE
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
             You know that friend who tells you the truth<br />
-            <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">even when it's not what you want to hear?</span>
+            <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">when everyone else has an agenda?</span>
           </h1>
 
-          <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-            <strong className="text-white">HōMI is that friend.</strong> Zero agenda. Actually on your side. Tells you YES, NO, or NOT YET—based on what's true, not what you want to hear.
+          <p className="text-xl text-gray-400 mb-6 leading-relaxed">
+            <strong className="text-white">HōMI is that friend.</strong> The first AI built to answer the question no one else is asking: <span className="text-[#22d3ee] font-semibold italic">"Is this MY moment?"</span>
           </p>
-          <p className="text-lg text-gray-500 mb-10">
-            No pressure. No pitch. Just the truth your other friends are too scared to say.
+          <p className="text-lg text-gray-300 mb-10 leading-relaxed">
+            Not "can you afford it?" Not "should you do it?" But whether you're actually <strong className="text-white">ready</strong>—financially, emotionally, and timing-wise. Zero agenda. Zero commissions. Just the truth your other friends are too scared to say.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -245,11 +245,18 @@ export default function LandingPage() {
         <div className="bg-gradient-to-br from-[#1e293b]/40 to-[#0f172a]/40 backdrop-blur-xl rounded-3xl p-12 md:p-16 border border-[#22d3ee]/10">
           <div className="text-center mb-12">
             <div className="text-sm font-bold tracking-widest text-[#22d3ee] mb-4">
-              ✦ WHAT A REAL HOMIE DOES
+              ✦ THE READINESS GAP
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-              This Is What <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Friendship</span> Actually Looks Like
+              Why This Category <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Needs to Exist</span>
             </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+              You're not scared. You're not broke. You're not unprepared. You're <strong className="text-white">stuck in the readiness gap</strong>—that space between "I can" and "I should."
+              No calculator measures this. No advisor solves this. <span className="text-[#22d3ee] font-semibold">Until now.</span>
+            </p>
+            <div className="inline-block bg-gradient-to-r from-[#22d3ee]/10 to-[#34d399]/10 border border-[#22d3ee]/30 rounded-2xl px-8 py-4 mb-12">
+              <p className="text-2xl font-bold text-white mb-2">What A Real Homie Does:</p>
+            </div>
           </div>
 
           <div className="space-y-12">
@@ -328,14 +335,10 @@ export default function LandingPage() {
             Three Rings. <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">One Truth.</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-6">
-            Most advice focuses on ONE thing: Can you afford it? Are you confident? Is the market good?
+            Every calculator tells you if you <em>can</em> afford it. Every advisor tells you if you <em>should</em> afford it. No one tells you if <strong className="text-white">this is your moment</strong>—until your HōMI.
           </p>
-          <p className="text-xl text-white max-w-3xl mx-auto mb-8 font-semibold">
-            But real readiness requires ALL THREE—at the same time.
-          </p>
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8">
-            Your HōMI weighs your financial reality (50%), emotional preparedness (30%), and timing truth (20%)—then gives you a verdict you can trust.
-            <strong className="text-[#22d3ee]"> When all three rings align, the compass becomes a key.</strong>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Decision Readiness Intelligence combines your financial reality (50%), emotional preparedness (30%), and timing truth (20%) into one score that tells the truth. <strong className="text-[#22d3ee]">When all three rings align, the compass becomes a key.</strong>
           </p>
 
           {/* Decision Type Selector */}
@@ -614,7 +617,7 @@ export default function LandingPage() {
       <section id="waitlist" className="px-6 py-24 max-w-4xl mx-auto">
         <div className="bg-gradient-to-br from-[#1e293b]/60 to-[#0f172a]/60 backdrop-blur-xl rounded-3xl p-12 border border-[#22d3ee]/30 shadow-2xl text-center">
           <div className="text-sm font-bold tracking-widest text-[#22d3ee] mb-4">
-            ✦ FOUNDER ACCESS
+            ✦ YOU'RE EARLY TO A NEW CATEGORY
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
             Find Your <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">HōMI</span>
@@ -622,11 +625,11 @@ export default function LandingPage() {
           <p className="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
             You're not signing up for software.
           </p>
-          <p className="text-2xl font-bold text-white mb-8 max-w-2xl mx-auto">
+          <p className="text-2xl font-bold text-white mb-6 max-w-2xl mx-auto">
             You're meeting your new decision-making homie.
           </p>
-          <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-            HōMI launches 2025. The first 1,000 get founder access—meaning you shape how this friendship works. We start with home buying, then expand to every major decision: career moves, investments, relocations, and more.
+          <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Decision Readiness Intelligence launches 2025. The first 1,000 users get founder access—meaning you shape how this category evolves and how this friendship works. Starting with home buying, expanding to career moves, investments, relocations, and every decision that matters. <strong className="text-white">No sales pitch. No upsell. Zero conflicts of interest.</strong> Just the truth no one else will give you.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
@@ -664,23 +667,23 @@ export default function LandingPage() {
 
             {showSuccess && (
               <div className="bg-[#34d399]/10 text-[#34d399] px-6 py-4 rounded-2xl border border-[#34d399] animate-[slideIn_0.5s_ease]">
-                <strong>✓ Welcome to HōMI.</strong><br />
-                Check your email—your homie just sent you a message. We'll be in touch when we're ready to help you make your move.
+                <strong>✓ Welcome to Decision Readiness Intelligence.</strong><br />
+                Check your email—your HōMI just sent you a message. You're now a pioneer in how people make life's biggest decisions.
               </div>
             )}
           </form>
 
           <p className="text-sm text-gray-500 mt-8">
-            No spam. No sales pitch. No agenda. Just a friend who tells you the truth.
+            Join the pioneers of Decision Readiness Intelligence. Zero spam. Zero agenda. Just a friend who tells you the truth.
           </p>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="text-center px-6 py-12 border-t border-[#22d3ee]/10 text-gray-500">
-        <p className="mb-2"><strong>© 2025 HōMI Technologies LLC.</strong> Building AI companions for life's biggest decisions.</p>
+        <p className="mb-2"><strong>© 2025 HōMI Technologies LLC.</strong> Pioneering Decision Readiness Intelligence.</p>
         <p className="text-sm text-gray-600">
-          Not therapy. Not productivity. Not sales. Your honest guide when everything's on the line.
+          Not a calculator. Not a coach. Not a sales pitch. Your homie who tells you the truth when everything's on the line.
         </p>
       </footer>
     </div>
