@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   ArrowLeft, ArrowRight, TrendingUp, Target, Heart, Clock, Check,
 } from "lucide-react";
@@ -77,6 +78,25 @@ export default function AssessmentPage() {
   if (result) {
     return (
       <main className="min-h-screen bg-homi-graphite flex flex-col items-center justify-center p-8 text-center">
+        {/* Header */}
+        <header className="fixed top-0 w-full z-50 bg-[#0A1128]/95 backdrop-blur-lg py-4 border-b border-[#22d3ee]/10">
+          <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <Link href="/" className="text-2xl font-extrabold tracking-wider hover:opacity-80 transition-opacity">
+              <span className="text-[#22d3ee]">H</span>
+              <span className="text-[#34d399]">ō</span>
+              <span className="text-[#facc15]">M</span>
+              <span className="text-[#22d3ee]">I</span>
+            </Link>
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-[#22d3ee] hover:text-[#34d399] transition-colors font-semibold"
+            >
+              <ArrowLeft size={18} />
+              Back to Home
+            </Link>
+          </div>
+        </header>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -140,6 +160,25 @@ export default function AssessmentPage() {
 
   return (
     <main className="min-h-screen bg-homi-graphite flex flex-col items-center justify-center p-6">
+      {/* Header */}
+      <header className="fixed top-0 w-full z-50 bg-[#0A1128]/95 backdrop-blur-lg py-4 border-b border-[#22d3ee]/10">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <Link href="/" className="text-2xl font-extrabold tracking-wider hover:opacity-80 transition-opacity">
+            <span className="text-[#22d3ee]">H</span>
+            <span className="text-[#34d399]">ō</span>
+            <span className="text-[#facc15]">M</span>
+            <span className="text-[#22d3ee]">I</span>
+          </Link>
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-[#22d3ee] hover:text-[#34d399] transition-colors font-semibold"
+          >
+            <ArrowLeft size={18} />
+            Back to Home
+          </Link>
+        </div>
+      </header>
+
       <div className="max-w-xl w-full bg-slate-900/60 border border-slate-700 rounded-2xl p-8 shadow-xl">
         <div className="flex justify-between mb-6 text-slate-400">
           <span>Question {step + 1} / {questions.length}</span>
