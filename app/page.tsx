@@ -256,7 +256,7 @@ export default function LandingPage() {
               No calculator measures this. No advisor solves this. <span className="text-[#22d3ee] font-semibold">Until now.</span>
             </p>
             <div className="inline-block bg-gradient-to-r from-[#22d3ee]/10 to-[#34d399]/10 border border-[#22d3ee]/30 rounded-2xl px-8 py-4 mb-12">
-              <p className="text-2xl font-bold text-white mb-2">What A Real Homie Does:</p>
+              <p className="text-2xl font-bold text-white mb-2">What Your HōMI Does:</p>
             </div>
           </div>
 
@@ -277,7 +277,7 @@ export default function LandingPage() {
                 They don't get paid more when you say yes. They don't profit when you buy. They have zero financial incentive to push you in any direction—they only care about whether it's the RIGHT move.
               </p>
               <p className="text-[#34d399] font-semibold">
-                HōMI makes $0 from referrals, commissions, or affiliate fees. Your decision doesn't change what we earn.
+                HōMI earns zero commissions, referral fees, or affiliate payments. We're paid by users, not by getting you to say yes.
               </p>
             </div>
 
