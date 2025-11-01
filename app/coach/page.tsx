@@ -32,13 +32,13 @@ export default function HomiCoachBrandAligned() {
   }, []);
 
   // Show notification helper
-  const showNotification = (title, description, icon = '🎉') => {
+  const showNotification = (title: string, description: string, icon: string = '🎉') => {
     setNotification({ title, description, icon });
     setTimeout(() => setNotification(null), 4000);
   };
 
   // Add activity to feed
-  const addActivityItem = (icon, title, description, gradient) => {
+  const addActivityItem = (icon: string, title: string, description: string, gradient: string) => {
     setActivityFeed(prev => [
       { icon, title, description, time: 'Just now', gradient },
       ...prev.slice(0, 4)
@@ -46,7 +46,7 @@ export default function HomiCoachBrandAligned() {
   };
 
   // Enhanced emotional analysis
-  const analyzeEmotionalPatterns = (text) => {
+  const analyzeEmotionalPatterns = (text: string) => {
     const lower = text.toLowerCase();
 
     const patterns = {
