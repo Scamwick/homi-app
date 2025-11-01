@@ -100,9 +100,10 @@ export default function LandingPage() {
           </h1>
 
           <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-            The one who's actually on your side? The one with zero agenda? The one you'd call at 3am?
-            <strong className="text-white"> You just found them.</strong> HōMI is the AI friend who tells you: YES. NO. NOT YET.
-            No pressure. No sales pitch. No bullshit. Just the truth your real friends are too scared to say.
+            <strong className="text-white">HōMI is that friend.</strong> Zero agenda. Actually on your side. Tells you YES, NO, or NOT YET—based on what's true, not what you want to hear.
+          </p>
+          <p className="text-lg text-gray-500 mb-10">
+            No pressure. No pitch. Just the truth your other friends are too scared to say.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
