@@ -48,6 +48,7 @@ export default function AssessmentPage() {
   const [form, setForm] = useState<Partial<AssessmentData>>({});
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const q = questions[step];
   const IconComponent = q.icon;
@@ -59,16 +60,24 @@ export default function AssessmentPage() {
 
   const submit = async () => {
     setLoading(true);
+    setError(null);
     try {
       const res = await fetch("/api/score", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ responses: form }),
       });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({ error: 'Unknown error occurred' }));
+        throw new Error(errorData.error || `Server error: ${res.status}`);
+      }
+
       const data = await res.json();
       setResult(data.score);
     } catch (err) {
-      console.error(err);
+      console.error('Score calculation error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to calculate score. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -213,6 +222,13 @@ export default function AssessmentPage() {
             )}
           </motion.div>
         </AnimatePresence>
+
+        {error && (
+          <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
+            <p className="font-semibold mb-1">Error</p>
+            <p>{error}</p>
+          </div>
+        )}
 
         <div className="flex justify-between mt-8">
           <button
