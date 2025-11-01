@@ -142,7 +142,7 @@ export default function HomiCoachBrandAligned() {
   };
 
   // Predictive futures (for results view)
-  const generatePredictiveFutures = (currentScore, financialScore, emotionalScore, timingScore) => {
+  const generatePredictiveFutures = (currentScore: number, financialScore: number, emotionalScore: number, timingScore: number) => {
     return [
       {
         title: 'Optimal Path',
@@ -206,7 +206,7 @@ export default function HomiCoachBrandAligned() {
     }, 2000);
   };
 
-  const getHomiResponse = (step, userInput) => {
+  const getHomiResponse = (step: number, userInput: string) => {
     const patterns = analyzeEmotionalPatterns(userInput || '');
 
     switch(step) {
@@ -381,7 +381,7 @@ ${emotionalPatterns.fomo.score > 30 ? "I know it may feel like you're missing ou
     setView('results');
   };
 
-  const handleChatInput = (value) => {
+  const handleChatInput = (value: string) => {
     if (!value.trim()) return;
 
     const field = ['name', 'excitement', 'income', 'savings', 'targetAmount', 'debt'][chatStep];
@@ -403,14 +403,14 @@ ${emotionalPatterns.fomo.score > 30 ? "I know it may feel like you're missing ou
   };
 
   // Threshold Compass SVG Component
-  const ThresholdCompass = ({ financial = 0, emotional = 0, timing = 0, size = 200, showKey = false, animated = false }) => {
+  const ThresholdCompass = ({ financial = 0, emotional = 0, timing = 0, size = 200, showKey = false, animated = false }: { financial?: number, emotional?: number, timing?: number, size?: number, showKey?: boolean, animated?: boolean }) => {
     const center = size / 2;
     const outerRadius = size * 0.42;
     const middleRadius = size * 0.32;
     const innerRadius = size * 0.22;
 
-    const getCircumference = (r) => 2 * Math.PI * r;
-    const getDashOffset = (circumference, percentage) => circumference * (1 - percentage / 100);
+    const getCircumference = (r: number) => 2 * Math.PI * r;
+    const getDashOffset = (circumference: number, percentage: number) => circumference * (1 - percentage / 100);
 
     return (
       <div className="relative inline-block">
