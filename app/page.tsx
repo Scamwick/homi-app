@@ -78,7 +78,7 @@ export default function LandingPage() {
               href="#waitlist"
               className="bg-gradient-to-r from-[#22d3ee] to-[#34d399] text-gray-900 px-6 py-2.5 rounded-full font-bold text-sm hover:shadow-lg hover:shadow-[#22d3ee]/30 transition-all hover:scale-105"
             >
-              Get Early Access
+              Join the Waitlist
             </a>
           </div>
         </div>
@@ -95,14 +95,13 @@ export default function LandingPage() {
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
-            Life's biggest decisions<br />
-            deserve <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">more than a coin flip</span>
+            Your biggest decision<br />
+            deserves more than <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">gut feeling</span>
           </h1>
 
           <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-            You know something's off, but can't tell if it's cold feet or real warning signs.
-            HōMI cuts through the noise: we analyze your readiness and tell you
-            if now is the time, or if you need to wait.
+            Cold feet or red flags? Most people can't tell the difference—and that's dangerous.
+            HōMI gives you the truth in three words: YES, NO, or NOT YET.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -110,13 +109,13 @@ export default function LandingPage() {
               href="#score"
               className="bg-gradient-to-r from-[#22d3ee] to-[#34d399] text-gray-900 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-[#22d3ee]/40 transition-all hover:scale-105 text-center"
             >
-              Get Your HōMI Score →
+              See If You're Ready →
             </Link>
             <Link
               href="/assessment"
               className="border-2 border-[#22d3ee] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#22d3ee]/10 transition-all hover:scale-105 text-center"
             >
-              Take Full Assessment
+              Get Your Full Report
             </Link>
           </div>
         </div>
@@ -186,11 +185,11 @@ export default function LandingPage() {
       <section id="score" className="px-6 py-24 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Discover Your <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Readiness Score</span>
+            Know Exactly <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Where You Stand</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
-            The HōMI Score analyzes three critical dimensions: Financial strength (50%), Emotional clarity (30%), and Timing (20%).
-            <strong className="text-white"> Watch the compass transform into a key when you cross the threshold.</strong>
+            Three scores. One answer. Your HōMI Score reveals if you're financially ready (50%), emotionally prepared (30%), and buying at the right time (20%).
+            <strong className="text-white"> When all three align, the compass becomes a key.</strong>
           </p>
 
           {/* Decision Type Selector */}
@@ -200,7 +199,7 @@ export default function LandingPage() {
                 🏡 Home Buying
               </button>
             </div>
-            <p className="text-sm text-gray-500 italic">More decisions coming soon. Stay tuned.</p>
+            <p className="text-sm text-gray-500 italic">Cars, investments, and career moves coming soon.</p>
           </div>
         </div>
 
@@ -229,7 +228,7 @@ export default function LandingPage() {
                     background: `linear-gradient(to right, #22d3ee 0%, #22d3ee ${financial}%, #1e293b ${financial}%, #1e293b 100%)`
                   }}
                 />
-                <p className="text-sm text-gray-500 mt-2">Income, savings, debt, and credit score</p>
+                <p className="text-sm text-gray-500 mt-2">Your income, savings, debt, and credit score</p>
               </div>
 
               <div>
@@ -253,7 +252,7 @@ export default function LandingPage() {
                     background: `linear-gradient(to right, #34d399 0%, #34d399 ${emotional}%, #1e293b ${emotional}%, #1e293b 100%)`
                   }}
                 />
-                <p className="text-sm text-gray-500 mt-2">Confidence, job stability, and life stability</p>
+                <p className="text-sm text-gray-500 mt-2">How confident and stable you actually feel</p>
               </div>
 
               <div>
@@ -277,7 +276,7 @@ export default function LandingPage() {
                     background: `linear-gradient(to right, #facc15 0%, #facc15 ${timing}%, #1e293b ${timing}%, #1e293b 100%)`
                   }}
                 />
-                <p className="text-sm text-gray-500 mt-2">Market conditions and your timeline to buy</p>
+                <p className="text-sm text-gray-500 mt-2">Whether now is actually the right time</p>
               </div>
             </div>
 
@@ -407,10 +406,10 @@ export default function LandingPage() {
       <section id="companions" className="px-6 py-24 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Choose Your <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">Decision Companion</span>
+            Pick the Coach <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">That Gets You</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Every major decision needs the right voice. Your AI companion adapts to how you think and what you need right now.
+            Big decisions need the right voice in your corner. Choose the AI companion that matches how you think—and what you need to hear right now.
           </p>
         </div>
 
@@ -420,7 +419,7 @@ export default function LandingPage() {
             <div className="text-6xl mb-6">📊</div>
             <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Analyst</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Pure numbers. Hard data. No fluff. Shows you scenarios, ranges, and trends for whatever you're deciding.
+              Pure numbers. Hard data. Zero fluff. Shows you the scenarios, runs the math, and tells you what the numbers actually say.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Data-driven</span>
@@ -434,7 +433,7 @@ export default function LandingPage() {
             <div className="text-6xl mb-6">✨</div>
             <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Optimist</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Helps you see possibilities. Builds confidence. Focuses on creative solutions and what could go right.
+              Sees what's possible, not just what's wrong. Builds your confidence, spots creative solutions, and reminds you why you can do this.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Encouraging</span>
@@ -448,7 +447,7 @@ export default function LandingPage() {
             <div className="text-6xl mb-6">🧭</div>
             <h3 className="text-2xl font-extrabold text-[#34d399] mb-3">The Navigator</h3>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Step-by-step roadmap. Creates timelines. Breaks down complex decisions into manageable milestones.
+              Breaks down the overwhelm. Builds you a step-by-step roadmap with clear milestones, realistic timelines, and no surprises.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="px-4 py-2 bg-[#22d3ee]/10 text-[#22d3ee] rounded-full text-sm font-semibold border border-[#22d3ee]/20">Methodical</span>
@@ -466,7 +465,7 @@ export default function LandingPage() {
             Join the <span className="bg-gradient-to-r from-[#22d3ee] via-[#34d399] to-[#facc15] bg-clip-text text-transparent">First 1,000</span>
           </h2>
           <p className="text-xl text-gray-400 mb-10">
-            HōMI launches in 2025. Get early access to AI-powered decision intelligence. Starting with home buying, expanding to cars, investments, and career changes. No sales pitch. Just truth.
+            HōMI launches 2025. First access goes to our first 1,000 members. We start with home buying, then expand to cars, investments, and career moves. No pitch. No pressure. Just honest answers when you need them most.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
@@ -489,7 +488,7 @@ export default function LandingPage() {
                 id="decision"
                 value={decision}
                 onChange={(e) => setDecision(e.target.value)}
-                placeholder="Home buying, car purchase, investment, career change, relocation..."
+                placeholder="Buying a home, changing careers, making a big investment..."
                 rows={4}
                 className="w-full px-6 py-4 rounded-2xl border-2 border-[#22d3ee]/20 bg-[#0f172a]/50 text-white focus:outline-none focus:border-[#22d3ee] focus:bg-[#0f172a]/80 transition-all resize-none"
               />
@@ -499,7 +498,7 @@ export default function LandingPage() {
               type="submit"
               className="w-full bg-gradient-to-r from-[#22d3ee] to-[#34d399] text-gray-900 px-8 py-4 rounded-full font-extrabold text-lg hover:shadow-2xl hover:shadow-[#22d3ee]/40 transition-all hover:scale-105"
             >
-              Reserve My Spot →
+              Get First Access →
             </button>
 
             {showSuccess && (
@@ -516,7 +515,7 @@ export default function LandingPage() {
       <footer className="text-center px-6 py-12 border-t border-[#22d3ee]/10 text-gray-500">
         <p className="mb-2"><strong>© 2025 HōMI Technologies LLC.</strong> Building AI companions for life's biggest decisions.</p>
         <p className="text-sm text-gray-600">
-          Not therapy. Not productivity. Not sales. Your honest guide for threshold moments.
+          Not therapy. Not productivity. Not sales. Your honest guide when everything's on the line.
         </p>
       </footer>
     </div>
