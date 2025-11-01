@@ -49,6 +49,7 @@ export default function AssessmentPage() {
   const [form, setForm] = useState<Partial<AssessmentData>>({});
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const q = questions[step];
   const IconComponent = q.icon;
@@ -58,18 +59,45 @@ export default function AssessmentPage() {
   const next = () => step < questions.length - 1 && setStep(step + 1);
   const back = () => step > 0 && setStep(step - 1);
 
+  // Check if current question is answered
+  const isCurrentQuestionAnswered = () => {
+    const value = form[q.id];
+    if (q.type === 'number') {
+      return value !== undefined && value !== null && typeof value === 'number' && value > 0;
+    }
+    return value !== undefined && value !== null && value !== '';
+  };
+
   const submit = async () => {
     setLoading(true);
+    setError(null);
+
+    console.log('Submitting form data:', form);
+
     try {
       const res = await fetch("/api/score", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ responses: form }),
       });
+
+      console.log('Response status:', res.status);
+
       const data = await res.json();
-      setResult(data.score);
+      console.log('Response data:', data);
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to calculate score');
+      }
+
+      if (data.score) {
+        setResult(data.score);
+      } else {
+        throw new Error('Invalid response from server');
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Submit error:', err);
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -253,6 +281,18 @@ export default function AssessmentPage() {
           </motion.div>
         </AnimatePresence>
 
+        {error && (
+          <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+
+        {!isCurrentQuestionAnswered() && (
+          <div className="mt-6 p-3 bg-slate-800/60 border border-slate-700 rounded-lg text-slate-400 text-sm text-center">
+            Please answer this question to continue
+          </div>
+        )}
+
         <div className="flex justify-between mt-8">
           <button
             onClick={back}
@@ -265,15 +305,16 @@ export default function AssessmentPage() {
           {step < questions.length - 1 ? (
             <button
               onClick={next}
-              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-emerald text-homi-graphite font-semibold hover:bg-homi-cyan transition-all transform hover:scale-105"
+              disabled={!isCurrentQuestionAnswered()}
+              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-emerald text-homi-graphite font-semibold hover:bg-homi-cyan transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next<ArrowRight size={18} />
             </button>
           ) : (
             <button
               onClick={submit}
-              disabled={loading}
-              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-cyan text-homi-graphite font-semibold hover:bg-homi-emerald transition-all transform hover:scale-105 disabled:opacity-50"
+              disabled={loading || !isCurrentQuestionAnswered()}
+              className="flex items-center gap-2 px-6 py-2 rounded-lg bg-homi-cyan text-homi-graphite font-semibold hover:bg-homi-emerald transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Calculating…" : "Get My Score"}
               <Check size={18} />
