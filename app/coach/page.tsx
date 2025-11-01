@@ -9,11 +9,31 @@ interface Notification {
   icon: string;
 }
 
+interface RealTimeData {
+  checking: { balance: number; account: string };
+  savings: { balance: number; account: string };
+  creditCard: { balance: number; limit: number; account: string };
+  monthlyIncome: number;
+  monthlyExpenses: number;
+  debtPayments: number;
+}
+
+interface UserData {
+  name: string;
+  excitement: string;
+  income: string;
+  savings: string;
+  targetAmount: string;
+  debt: string;
+  plaidConnected: boolean;
+  realTimeData: RealTimeData | null;
+}
+
 export default function HomiCoachBrandAligned() {
   const [view, setView] = useState('landing');
   const [selectedCategory, setSelectedCategory] = useState('homes');
   const [chatStep, setChatStep] = useState(0);
-  const [userData, setUserData] = useState({
+  const [userData, setUserData] = useState<UserData>({
     name: '', excitement: '', income: '', savings: '', targetAmount: '', debt: '',
     plaidConnected: false, realTimeData: null
   });
