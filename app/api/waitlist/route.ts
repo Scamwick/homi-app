@@ -21,6 +21,16 @@ export async function POST(request: Request) {
 
     const supabase = getServerSupabase();
 
+    if (!supabase) {
+      // If Supabase is not configured, still return success (for development/demo)
+      console.log('Supabase not configured - waitlist email would be:', body.email);
+      return NextResponse.json({
+        success: true,
+        message: 'Successfully joined the waitlist!',
+        data: { email: body.email },
+      });
+    }
+
     // Insert into waitlist
     const { data, error } = await supabase
       .from('waitlist')
@@ -75,6 +85,13 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     const supabase = getServerSupabase();
+
+    if (!supabase) {
+      // If Supabase is not configured, return 0
+      return NextResponse.json({
+        count: 0,
+      });
+    }
 
     // Get waitlist count
     const { count, error } = await supabase

@@ -81,39 +81,43 @@ export async function POST(request: Request) {
       creditScore: creditScoreNumeric,
     });
 
-    // Save to Supabase
+    // Save to Supabase (optional - only if configured)
     try {
       const supabase = getServerSupabase();
 
-      await supabase
-        .from('assessments')
-        .insert({
-          income: data.income,
-          savings: data.savings,
-          monthly_debt: data.monthlyDebt || 0,
-          credit_score_range: data.creditScore || 'Unknown',
-          target_price: data.targetPrice,
-          confidence: data.confidence || 5,
-          job_stability: data.jobStability || '',
-          life_stability: data.lifeStability || '',
-          location: data.location || '',
-          timeline: data.timeline || '',
-          total_score: totalScore,
-          financial_score: financialScore,
-          emotional_score: emotionalScore,
-          decision,
-          recommendations,
-          message,
-        });
+      if (supabase) {
+        await supabase
+          .from('assessments')
+          .insert({
+            income: data.income,
+            savings: data.savings,
+            monthly_debt: data.monthlyDebt || 0,
+            credit_score_range: data.creditScore || 'Unknown',
+            target_price: data.targetPrice,
+            confidence: data.confidence || 5,
+            job_stability: data.jobStability || '',
+            life_stability: data.lifeStability || '',
+            location: data.location || '',
+            timeline: data.timeline || '',
+            total_score: totalScore,
+            financial_score: financialScore,
+            emotional_score: emotionalScore,
+            decision,
+            recommendations,
+            message,
+          });
 
-      await supabase.from('events').insert({
-        event_type: 'assessment_completed',
-        properties: {
-          score: totalScore,
-          decision,
-          location: data.location,
-        },
-      });
+        await supabase.from('events').insert({
+          event_type: 'assessment_completed',
+          properties: {
+            score: totalScore,
+            decision,
+            location: data.location,
+          },
+        });
+      } else {
+        console.log('Supabase not configured - skipping database save');
+      }
     } catch (dbError) {
       console.error('Database error:', dbError);
     }
