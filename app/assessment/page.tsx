@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowLeft, ArrowRight, TrendingUp, Target, Heart, Clock, Check,
 } from "lucide-react";
@@ -45,6 +46,7 @@ const questions: Question[] = [
 ];
 
 export default function AssessmentPage() {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<Partial<AssessmentData>>({});
   const [result, setResult] = useState<any>(null);
@@ -259,7 +261,10 @@ export default function AssessmentPage() {
                 <button
                   className="w-full bg-gradient-to-r from-homi-cyan to-homi-emerald text-gray-900 px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-all transform hover:scale-105"
                   onClick={() => {
-                    alert('Coach feature coming soon! We\'ll connect you with your ' + selectedCompanion + ' to work on your recommendations.');
+                    // Store assessment data in sessionStorage for coach page
+                    sessionStorage.setItem('assessmentResult', JSON.stringify(result));
+                    // Navigate to coach page with companion type
+                    router.push(`/coach?companion=${selectedCompanion}&score=${result.total}`);
                   }}
                 >
                   Start Working with Your Coach →
