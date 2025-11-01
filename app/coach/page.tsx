@@ -3,6 +3,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Home, ArrowRight, ArrowLeft, Brain, Heart, MessageCircle, CheckCircle, AlertTriangle, Clock, DollarSign, Target, Sparkles, Share2, Copy, BarChart3, Zap, Lock, Shield, Eye, TrendingDown, Activity, Navigation, X, ChevronRight, Download } from 'lucide-react';
 
+interface Notification {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 export default function HomiCoachBrandAligned() {
   const [view, setView] = useState('landing');
   const [selectedCategory, setSelectedCategory] = useState('homes');
@@ -21,7 +27,7 @@ export default function HomiCoachBrandAligned() {
     { icon: '📈', title: 'Score Increased', description: '+3 points from debt paydown', time: '2 hours ago', gradient: 'from-emerald-500 to-yellow-500' },
     { icon: '🏘️', title: 'Market Update', description: 'Inventory up 12% in your area', time: '5 hours ago', gradient: 'from-yellow-500 to-cyan-500' }
   ]);
-  const [notification, setNotification] = useState(null);
+  const [notification, setNotification] = useState<Notification | null>(null);
 
   // Animate compass on load
   useEffect(() => {
