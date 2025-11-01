@@ -43,11 +43,14 @@ const questions: Question[] = [
   { id: "timeline", label: "Buying Timeline", type: "select", options: ["1-3 months","3-6 months","6-12 months","12+ months"], icon: Clock },
 ];
 
+type Companion = 'analyst' | 'optimist' | 'navigator' | null;
+
 export default function AssessmentPage() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<Partial<AssessmentData>>({});
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [selectedCompanion, setSelectedCompanion] = useState<Companion>(null);
 
   const q = questions[step];
   const IconComponent = q.icon;
@@ -56,6 +59,60 @@ export default function AssessmentPage() {
 
   const next = () => step < questions.length - 1 && setStep(step + 1);
   const back = () => step > 0 && setStep(step - 1);
+
+  const getCompanionMessage = (companion: Companion, score: number, decision: string) => {
+    if (!companion) return result.message;
+
+    const messages = {
+      analyst: {
+        YES: \`Data says YES. Score: \${score}/100. Your numbers are strong - DTI ratio is favorable, down payment percentage meets the 20% threshold, and credit positioning is solid. Proceed with pre-approval.\`,
+        'NOT YET': \`Score: \${score}/100. Analysis shows gaps in 2-3 key metrics. Focus on the highest-impact improvements first. Run scenarios: What if you reduce debt by X%? What if you save Y more months? Numbers don't lie.\`,
+        NO: \`Score: \${score}/100. The math doesn't work yet. Your debt-to-income ratio, down payment percentage, or credit score needs significant improvement. Don't rush it - build your foundation first.\`,
+      },
+      optimist: {
+        YES: \`You're ready! 🎉 This is exciting - you've done the work, built the foundation, and now you get to take this amazing step. Trust yourself. You've got this!\`,
+        'NOT YET': \`You're closer than you think! Every step you've taken has built momentum. Focus on progress, not perfection. In 6-12 months, with some focused effort, you could be in a completely different position. Keep going!\`,
+        NO: \`This isn't a setback - it's information. You're building something big, and that takes time. Celebrate how far you've come, and know that every smart financial decision is moving you forward. Your future home is worth the wait.\`,
+      },
+      navigator: {
+        YES: \`✓ Ready to proceed. Next steps: (1) Get pre-approved for mortgage within 2 weeks. (2) Connect with 2-3 real estate agents. (3) Set up home search alerts. (4) Schedule viewings. Timeline: 60-90 days to close.\`,
+        'NOT YET': \`Action plan: Month 1-3: Address top 2 recommendations below. Month 4-6: Recheck credit score, continue saving. Month 6: Reassess readiness. Month 7+: If improved, begin pre-approval process. Stay the course.\`,
+        NO: \`12-24 month roadmap needed. Q1: Build emergency fund to 3 months. Q2-Q3: Pay down high-interest debt, improve credit habits. Q4-Q1: Continue saving for down payment. Q2: Reassess and adjust timeline. One step at a time.\`,
+      },
+    };
+
+    return messages[companion][decision as keyof typeof messages.analyst] || result.message;
+  };
+
+  const companions = [
+    {
+      id: 'analyst' as Companion,
+      name: 'The Analyst',
+      icon: '📊',
+      description: 'Pure numbers. Hard data. No fluff.',
+      color: 'from-cyan-500 to-blue-500',
+      borderColor: 'border-cyan-500/50',
+      textColor: 'text-cyan-400',
+    },
+    {
+      id: 'optimist' as Companion,
+      name: 'The Optimist',
+      icon: '✨',
+      description: 'Builds confidence. Sees possibilities.',
+      color: 'from-emerald-500 to-green-500',
+      borderColor: 'border-emerald-500/50',
+      textColor: 'text-emerald-400',
+    },
+    {
+      id: 'navigator' as Companion,
+      name: 'The Navigator',
+      icon: '🧭',
+      description: 'Step-by-step roadmap. Clear milestones.',
+      color: 'from-amber-500 to-yellow-500',
+      borderColor: 'border-amber-500/50',
+      textColor: 'text-amber-400',
+    },
+  ];
 
   const submit = async () => {
     setLoading(true);
@@ -81,7 +138,7 @@ export default function AssessmentPage() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl w-full"
+          className="max-w-4xl w-full"
         >
           <h1 className="text-4xl font-bold text-homi-cyan mb-4">Your HōMI Score</h1>
 
@@ -89,7 +146,52 @@ export default function AssessmentPage() {
             <ThresholdCompass score={result.total} />
           </div>
 
-          <p className="mt-4 text-homi-emerald text-xl font-semibold">{result.message}</p>
+          {/* Companion Selection */}
+          {!selectedCompanion ? (
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold text-white mb-4">Choose Your Decision Companion</h2>
+              <p className="text-slate-400 mb-6">Each companion provides a different perspective on your results</p>
+              <div className="grid md:grid-cols-3 gap-4">
+                {companions.map((companion) => (
+                  <motion.button
+                    key={companion.id}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setSelectedCompanion(companion.id)}
+                    className={\`bg-slate-800/60 border-2 \${companion.borderColor} hover:bg-slate-700/60 rounded-xl p-6 text-left transition-all\`}
+                  >
+                    <div className="text-4xl mb-3">{companion.icon}</div>
+                    <h3 className={\`text-xl font-bold \${companion.textColor} mb-2\`}>{companion.name}</h3>
+                    <p className="text-slate-300 text-sm">{companion.description}</p>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="mb-6">
+              {companions.find(c => c.id === selectedCompanion) && (
+                <div className="bg-slate-800/60 border-2 border-cyan-500/50 rounded-xl p-6 mb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <span className="text-3xl">{companions.find(c => c.id === selectedCompanion)!.icon}</span>
+                      <h3 className="text-xl font-bold text-cyan-400">
+                        {companions.find(c => c.id === selectedCompanion)!.name}
+                      </h3>
+                    </div>
+                    <button
+                      onClick={() => setSelectedCompanion(null)}
+                      className="text-sm text-slate-400 hover:text-white"
+                    >
+                      Change Companion
+                    </button>
+                  </div>
+                  <p className="text-white text-lg leading-relaxed">
+                    {getCompanionMessage(selectedCompanion, result.total, result.decision)}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="mt-6 grid grid-cols-2 gap-4 max-w-md mx-auto mb-8">
             <div className="bg-slate-800/60 px-6 py-4 rounded-xl border border-slate-700">
