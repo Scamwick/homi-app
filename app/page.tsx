@@ -84,8 +84,9 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="min-h-screen grid md:grid-cols-2 items-center gap-16 px-6 md:px-12 pt-32 pb-16 max-w-7xl mx-auto relative">
+      <main>
+        {/* Hero Section */}
+        <section className="min-h-screen grid md:grid-cols-2 items-center gap-16 px-6 md:px-12 pt-32 pb-16 max-w-7xl mx-auto relative">
         {/* Glow Effect */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#22d3ee]/20 rounded-full blur-[120px] animate-pulse-glow pointer-events-none" />
 
@@ -372,6 +373,7 @@ export default function LandingPage() {
                   max="100"
                   value={financial}
                   onChange={(e) => setFinancial(Number(e.target.value))}
+                  aria-label="Financial Strength"
                   className="w-full h-2.5 rounded-full appearance-none cursor-pointer bg-[#1e293b]"
                   style={{
                     background: `linear-gradient(to right, #22d3ee 0%, #22d3ee ${financial}%, #1e293b ${financial}%, #1e293b 100%)`
@@ -396,6 +398,7 @@ export default function LandingPage() {
                   max="100"
                   value={emotional}
                   onChange={(e) => setEmotional(Number(e.target.value))}
+                  aria-label="Emotional Readiness"
                   className="w-full h-2.5 rounded-full appearance-none cursor-pointer bg-[#1e293b]"
                   style={{
                     background: `linear-gradient(to right, #34d399 0%, #34d399 ${emotional}%, #1e293b ${emotional}%, #1e293b 100%)`
@@ -420,6 +423,7 @@ export default function LandingPage() {
                   max="100"
                   value={timing}
                   onChange={(e) => setTiming(Number(e.target.value))}
+                  aria-label="Market Timing"
                   className="w-full h-2.5 rounded-full appearance-none cursor-pointer bg-[#1e293b]"
                   style={{
                     background: `linear-gradient(to right, #facc15 0%, #facc15 ${timing}%, #1e293b ${timing}%, #1e293b 100%)`
@@ -678,6 +682,7 @@ export default function LandingPage() {
           </p>
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <footer className="text-center px-6 py-12 border-t border-[#22d3ee]/10 text-gray-500">
